@@ -3,7 +3,7 @@ terraform {
     organization = "k07g"
     hostname     = "app.terraform.io"
     workspaces {
-      name    = "t1"
+      name    = "t1-sb"
       project = "sandbox"
     }
   }
