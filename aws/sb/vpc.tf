@@ -5,3 +5,11 @@ resource "aws_vpc" "g" {
     Name = "g"
   }
 }
+
+resource "aws_subnet" "g2" {
+  vpc_id     = aws_vpc.g.id
+  cidr_block = "10.1.1.0/24"
+  tags = {
+    Name = "g2"
+  }
+}
