@@ -31,7 +31,7 @@ resource "aws_ecr_lifecycle_policy" "g2" {
 
 # planning poker
 resource "aws_ecr_repository" "planning_poker" {
-  name                 = "PlanningPoker"
+  name                 = "planning-poker"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
