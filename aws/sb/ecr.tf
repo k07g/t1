@@ -1,3 +1,4 @@
+# g2
 resource "aws_ecr_repository" "g2" {
   name                 = "g2"
   image_tag_mutability = "MUTABLE"
@@ -25,5 +26,20 @@ data "aws_ecr_lifecycle_policy_document" "untagged" {
 
 resource "aws_ecr_lifecycle_policy" "g2" {
   repository = aws_ecr_repository.g2.name
+  policy     = data.aws_ecr_lifecycle_policy_document.untagged.json
+}
+
+# planning poker
+resource "aws_ecr_repository" "planning_poker" {
+  name                 = "PlanningPoker"
+  image_tag_mutability = "MUTABLE"
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+}
+
+resource "aws_ecr_lifecycle_policy" "planning_poker" {
+  repository = aws_ecr_repository.planning_poker.name
   policy     = data.aws_ecr_lifecycle_policy_document.untagged.json
 }
