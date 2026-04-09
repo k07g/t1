@@ -1,3 +1,7 @@
+data "aws_vpc" "default" {
+  id = "vpc-05750848aa0be076d"
+}
+
 resource "aws_vpc" "g" {
   cidr_block       = "10.1.0.0/16"
   instance_tenancy = "default"
@@ -14,10 +18,11 @@ resource "aws_subnet" "g2" {
   }
 }
 
-resource "aws_subnet" "planning_poker_public" {
-  vpc_id     = aws_vpc.g.id
-  cidr_block = "10.1.2.0/24"
+resource "aws_security_group" "sg_alb" {
+  name        = "sgAlb"
+  description = "Security group for ALB"
+  vpc_id      = data.aws_vpc.default.id
   tags = {
-    Name = "planning_poker_public"
+    Name = "sg-alb"
   }
 }
