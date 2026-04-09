@@ -39,20 +39,6 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution" {
   policy_arn = data.aws_iam_policy.ecs_task_execution.arn
 }
 
-import {
-  to = aws_iam_role.ecs_task_execution
-  identity = {
-    name = "ecsTaskExecutionRole"
-  }
-}
-
-import {
-  to = aws_iam_role_policy_attachment.ecs_task_execution
-  identity = {
-    role       = aws_iam_role.ecs_task_execution.name
-    policy_arn = data.aws_iam_policy.ecs_task_execution.arn
-  }
-}
 ##################################################################
 # IAM Roles and Policies for ECS Infrastructure
 ##################################################################
@@ -87,11 +73,4 @@ resource "aws_iam_role" "ecs_infrastructure" {
   assume_role_policy = data.aws_iam_policy_document.ecs_infrastructure.json
   description        = "This role allows Amazon ECS to manage resources associated with Amazon ECS Express services."
   path               = "/service-role/"
-}
-
-import {
-  to = aws_iam_role.ecs_infrastructure
-  identity = {
-    name = "ecsInfrastructureRoleForExpressServices"
-  }
 }
