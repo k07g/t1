@@ -1,3 +1,4 @@
+/*
 resource "aws_ecs_cluster" "planning_poker" {
   name = "planning-poker"
   setting {
@@ -6,7 +7,6 @@ resource "aws_ecs_cluster" "planning_poker" {
   }
 }
 
-/*
 resource "aws_security_group" "ecs_task" {
   name   = "t1-sb-ecs-task"
   vpc_id = data.aws_vpc.default.id
